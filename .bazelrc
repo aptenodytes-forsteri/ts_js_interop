@@ -1,0 +1,2 @@
+# Add a build flag for TypeScript lib check.
+common --@aspect_rules_ts//ts:skipLibCheck=always
