@@ -1,6 +1,7 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_swc//swc:defs.bzl", "swc")
 load("@bazel_skylib//lib:partial.bzl", "partial")
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 
 ts_project(
     name = "src",
@@ -17,4 +18,15 @@ ts_project(
         swcrc = "//:.swcrc",
     ),
     tsconfig = "//:tsconfig",
+)
+
+esbuild(
+    name = "example_bundle",
+    config = {
+        "alias": {"wkspc": "./"},
+    },
+    entry_point = "b.js",
+    deps = [
+        ":src",
+    ],
 )
